@@ -1,0 +1,143 @@
+#+TITLE: Kai (ta) Loipa
+
+Simplifying and automating the mundane task of creating, organizing, and finding
+your static notes so that you can focus on their actual content. It does not
+*alter* the way you would otherwise interact with your org files, like other
+widely used packages.
+
+* Usage
+** Installation
+Now, I'm sorry that this section is under-developed, but I haven't experimented
+a lot around package managers. This is an automated solution using ~straight.el~
+as your package manager:
+#+begin_src elisp
+(straight-use-package
+ '(klp
+   :type git
+   :host github
+   :repo "chatziiol/klp"))
+#+end_src
+
+Obviously, you can also download ~klp.el~, place it in your emacs configuration
+directory ($HOME/.emacs.d), and load it in your ~init.el~ file using:
+#+begin_src elisp
+(load 'klp.el)
+#+end_src
+
+** Configuration
+At this point (and I think that ideally it should be kept like that), not many
+configuration options are available. The package is simple and straight forward.
+The only thing you *need* to set upon installation is the ~klp/static-notes-dir~
+variable, so that klp looks at the right directory for your notes (and creates
+them there).
+#+begin_src elisp
+(setq klp/static-notes-dir "~/path/to/dir")
+#+end_src
+
+* Filenaming  standards - procedures
+ This small package is to help you keep a clean and organized directory
+ structure, easily find your notes and bootstrap the note-creation process.
+
+ To achieve this functionality, the package utilizes two basic /rules/:
+1. A file-naming standard:
+   #+begin_example
+    notes_(category_)title.org 
+   #+end_example
+   You, obviously, can tailor[fn:2] that to your needs, but I haven't had, so far a
+   single reason to do so. Its structure allows for note files to be grouped up
+   together when navigating the notes-directory manually.
+2. A file-properties standard:
+   #+begin_example
+   #+<PROPERTY>: <VALUE>
+   #+end_example
+   This can also be modified, even though it is tricky and (as a tip), should be
+   done gradually and not at once. Just because a feature exists it does not
+   mean that it should be used
+
+* Use cases: 
+As you can see on the examples below, taken from my personal configuration, I
+think that the greatest quality this package has to offer is its ability to
+segment your set of notes, which size can become overwhelming after some time,
+into smaller parts (categories), without however, falling in the trap of
+creating more locations to search, when looking for a file.
+
+** Some examples
+This must be one of the most widely used functions in my arsenal when I perform
+system administration tasks (and not only then). If I know that this job can be
+done with a tool, yet I do not remember the exact syntax I do ~<space>lT~ (the
+keybinding I have assigned to it), write the tool's name and quickly look up my
+notes on it. If that info is missing... well it won't be missing for long ;)
+#+begin_src elisp
+(defun chatziiola/open-tools ()
+"Macro to use `klp/open-note' to open all `notes_tool_title.org' files."
+  (interactive)
+  (klp/open-note "tool" '("TITLE")))
+#+end_src
+
+Sadly, it has been too long since I used this function, but I place it here as
+an alternative: I have used numerous times the format of this package to
+document my findings in a TryHackMe room, while I was in it, allowing me to:
+- quickly organize the available data and my thoughts at the moment
+- go back to rooms that challenged me (yet contain useful info) to ... steal
+  something from there
+#+begin_src elisp
+
+(defun chatziiola/open-thm-room ()
+"Macro to use `klp/open-note' to open all `notes_thm_title.org' files."
+  (interactive)
+  (klp/open-note "thm" '("DATE" "TITLE")))
+
+#+end_src
+
+* On Code quality
+This is not only my first Emacs package, this is my first attempt in converting
+a set of personally indispensable scripts to FOSS.
+
+As a result of the two above, I'm afraid that certain qualities that have long
+been implemented in well-maintained packages, might be missing from here, and
+since I learnt elisp through experimentation, without the need to dig deep, the
+lisp code will not be sophisticated either. Feel free to open pull-requests and
+issues.
+
+** Contributing
+This package was developed using literate programming: There is a ~literate.org~
+file in the directory, containing all of ~klp~ source code within lisp source
+blocks, in sections so that it decreases the mental effort one needs to put into
+it to learn the package, and with (sometimes) insight why certain decisions were
+made. If you intend to contribute, please edit the literate programming source
+file, and add comments on why you approached things a certain way.
+
+Obviously, too much info is at times as harmful as no info, and if it becomes a
+problem it will be dealt with. However, I find it hard to believe that this will
+be the case for a package of this size.
+
+* Comparing with other well known packages
+*Why not denote?* I'm sure that ~denote~ is a beautiful notetaking package, one
+which I have not tried using; I have something that works just the way I want.
+This package, as stated above, focuses on the creation, look up and organization
+of files, so that you can keep your notes organized and easily searchable (even
+if you do not have any fancy packages). 
+
+*Why not org-roam?*: *Static notes* are meant to be thought of as reference notes:
+One may seek them to quickly look some (specific) information up, write down a
+set of notes that they think they may look again, but they do not aim to *build*
+on this knowledge, by linking it to other /pieces of knowledge/. Thus static notes
+are *notes that would be a waste of space inside one's Zettelkasten*[fn:1]
+
+* On the package's name
+Well, when I set off to rewrite this section of my personal configuration so
+that it can be published, I could not think of any good package names, so I
+asked a friend of mine: Dimitris Kosmidis. After suggesting a couple of names,
+he said klp, "και λοιπά", which is the Greek equivalent of etc.
+
+Since I did not want to name the package ~org-sth~ or ~notes-sth~, I settled on klp.
+
+* Footnotes
+[fn:2] Ehm, I think I may have messed that up :P, this feature is not available
+at the time being. I will make sure to add it when I find the time (and a nice
+solution)
+
+[fn:1] Of course, I am not an expert on the matter, this is just what I have
+come to believe, having done my fair share of research on the topic. I actually
+use ~org-roam~, and really like the features that it offers, but (for a lot of
+stuff), I find this, more *manual* solution, much more helpful. 
