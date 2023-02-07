@@ -233,5 +233,6 @@ entered upon the creation of a new note. Defaults to
     )
 )
 
-(provide 'klp.el)
+(provide 'klp)
+
 ;;; klp.el ends here

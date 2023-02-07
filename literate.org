@@ -348,7 +348,8 @@ entered upon the creation of a new note. Defaults to
 
 * Footer
 #+begin_src elisp
-(provide 'klp.el)
+(provide 'klp)
+
 ;;; klp.el ends here
 #+end_src
 
