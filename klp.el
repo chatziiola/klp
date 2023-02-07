@@ -50,6 +50,8 @@
 
 ;;; Code:
 
+(require 'org)
+
 (defvar klp/static-notes-dir "~/org/notes"
   "The default directory in which static notes will be stored.")
 
@@ -234,5 +236,4 @@ entered upon the creation of a new note. Defaults to
 )
 
 (provide 'klp)
-
 ;;; klp.el ends here

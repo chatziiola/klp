@@ -11,11 +11,12 @@ Now, I'm sorry that this section is under-developed, but I haven't experimented
 a lot around package managers. This is an automated solution using ~straight.el~
 as your package manager:
 #+begin_src elisp
-(straight-use-package
- '(klp
-   :type git
-   :host github
-   :repo "chatziiola/klp"))
+(use-package klp
+    :straight (:host github
+		     :repo "chatziiola/klp"
+		     :files "klp.el")
+    :init
+    (setq klp/static-notes-dir "~/path/to/dir"))
 #+end_src
 
 Obviously, you can also download ~klp.el~, place it in your emacs configuration

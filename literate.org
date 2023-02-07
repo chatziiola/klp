@@ -67,6 +67,8 @@ Commentary
 Let's dive into the code
 #+begin_src elisp
 ;;; Code:
+
+(require 'org)
 #+end_src
 
 * Variables
@@ -349,7 +351,6 @@ entered upon the creation of a new note. Defaults to
 * Footer
 #+begin_src elisp
 (provide 'klp)
-
 ;;; klp.el ends here
 #+end_src
 
