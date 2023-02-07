@@ -15,7 +15,7 @@ as your package manager:
  '(klp
    :type git
    :host github
-   :repo "chatziiol/klp"))
+   :repo "chatziiola/klp"))
 #+end_src
 
 Obviously, you can also download ~klp.el~, place it in your emacs configuration
