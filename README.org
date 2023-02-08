@@ -13,8 +13,7 @@ as your package manager:
 #+begin_src elisp
 (use-package klp
     :straight (:host github
-		     :repo "chatziiola/klp"
-		     :files "klp.el")
+		     :repo "chatziiola/klp")
     :init
     (setq klp/static-notes-dir "~/path/to/dir"))
 #+end_src
