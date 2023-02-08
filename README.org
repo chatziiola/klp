@@ -1,4 +1,4 @@
-#+TITLE: Kai (ta) Loipa
+#+TITLE: Kai Loipa
 
 Simplifying and automating the mundane task of creating, organizing, and finding
 your static notes so that you can focus on their actual content. It does not
@@ -16,6 +16,11 @@ as your package manager:
 		     :repo "chatziiola/klp")
     :init
     (setq klp/static-notes-dir "~/path/to/dir"))
+#+end_src
+
+If you are a doom user you can also use this snippet in your ~packages.el~:
+#+begin_src elisp
+(package! klp :recipe (:host github :repo "chatziiola/klp"))
 #+end_src
 
 Obviously, you can also download ~klp.el~, place it in your emacs configuration
@@ -46,6 +51,13 @@ them there).
    You, obviously, can tailor[fn:2] that to your needs, but I haven't had, so far a
    single reason to do so. Its structure allows for note files to be grouped up
    together when navigating the notes-directory manually.
+
+   *Why don't you include date in the filename?* Including the date in the
+   filename is an organizing technique that is righteously widely used. The
+   problem with it is that it does not group files up properly. If you're
+   manually navigating that directory (happens to the best of us), you will not
+   be able to *immediately* find all your notes files grouped together - they will
+   be grouped by creation time (the date part of the filename) and not by type.
 2. A file-properties standard:
    #+begin_example
    #+<PROPERTY>: <VALUE>
