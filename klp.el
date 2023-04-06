@@ -58,6 +58,7 @@
 (defvar klp/default-keyword-alist (list "TITLE" "DATE")
   "The default set of parameters to be entered upon note creation.")
 
+;;;### autoload
 (defun klp/sluggify (inputString)
   "Given a string return it's /sluggified/ version.
 It has only one argument, INPUTSTRING, which is self-described"
